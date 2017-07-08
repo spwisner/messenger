@@ -38,14 +38,18 @@ class App extends Component {
     });
   }
 
-  displayMessages(messages) {
+  displayMessages() {
+    let messages = this.state.messages;
     let visibleMessages = [];
-    const currentUserId = Number(this.state.currentUser);
+    const currentUserId = this.state.currentUser;
+    const currentRecipient = this.state.recipient;
 
     for (let i = 0; i < messages.length; i++) {
       let isSender = messages[i].sender_id;
       let isRecipient = messages[i].recipient_id;
-      if (isSender === currentUserId || isRecipient === currentUserId) {
+      const currentUserSelected = (isSender === currentUserId || isRecipient === currentUserId);
+      const currentRecipientSelected = (isSender === currentRecipient || isRecipient === currentRecipient);
+      if (currentUserSelected && currentRecipientSelected) {
         visibleMessages.push(messages[i]);
       }
     }
@@ -57,27 +61,27 @@ class App extends Component {
     const newMessages = this.state.messages.slice();
     newMessage.id = this.state.messages.length + 1;
     newMessages.push(newMessage);
-    this.setState({ messages: newMessages });
+    return this.setState({ messages: newMessages });
   }
 
   setUser(id) {
     const userObject = {};
     userObject.currentUser = Number(id);
-    this.setState(userObject);
+    return this.setState(userObject);
   }
 
   setRecipient(id) {
     const recipientObject = {};
     recipientObject.recipient = Number(id);
-    this.setState(recipientObject);
+    return this.setState(recipientObject);
   }
 
   render() {
-    const messages = this.displayMessages(this.state.messages);
+    const messages = this.displayMessages();
     return (
       <div className="App">
         <div>
-          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} />
+          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient} />
           <div className="row">
             <div className="col-xs-4">
               <Contacts users={this.state.users} setRecipient={this.setRecipient}/>

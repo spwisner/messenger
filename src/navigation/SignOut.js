@@ -11,6 +11,7 @@ export default class SignOut extends React.Component {
     event.preventDefault();
     console.log('sign out clicked');
     this.props.setUser(0);
+    this.props.setRecipient(0);
   }
 
   render() {
