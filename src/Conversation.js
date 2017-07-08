@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Message = (props) => (
-  <li>{props.message.body}</li>
+  <ul>
+    <li>{props.message.body}</li>
+    <li>{props.message.time_sent.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric'})}</li>
+  </ul>
 )
 
 function Conversation(props) {
