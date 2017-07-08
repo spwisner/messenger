@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import SignOut from './SignOut';
 import SignIn from './SignIn'
@@ -7,7 +5,6 @@ import SignIn from './SignIn'
 export default class Navigation extends React.Component {
   render() {
     const currentUser = (this.props.currentUser > 0);
-    console.log(currentUser);
     return (
       <div>
         <nav className="navbar navbar-inverse">

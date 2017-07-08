@@ -6,52 +6,11 @@ import Conversation from './Conversation';
 import Contacts from './Contacts';
 import Navigation from './navigation/Navigation';
 
-const messages = [
-  {
-    id: 1,
-    sender_id: 1,
-    recipient_id: 2,
-    time_sent: new Date(Date.UTC(2012, 11, 20, 3, 0, 0)),
-    body: "First Message"
-  },
-  {
-    id: 2,
-    sender_id: 1,
-    recipient_id: 2,
-    time_sent: new Date(Date.UTC(2013, 10, 20, 4, 0, 0)),
-    body: "Second Message"
-  },
-  {
-    id: 3,
-    sender_id: 1,
-    recipient_id: 2,
-    time_sent: new Date(Date.UTC(2015, 11, 20, 5, 0, 0)),
-    body: "Third Message"
-  },
-];
+const data = require('./sample-data');
 
-const users = [
-  {
-    id: 1,
-    name: "Scott"
-  },
-  {
-    id: 2,
-    name: "Ryan"
-  },
-  {
-    id: 3,
-    name: "Adrienne"
-  },
-  {
-    id: 4,
-    name: "DJ"
-  },
-  {
-    id: 5,
-    name: "Andrew"
-  }
-];
+const messages = data.messages;
+const users = data.users;
+
 
 class App extends Component {
   constructor() {
@@ -77,6 +36,21 @@ class App extends Component {
     });
   }
 
+  displayMessages(messages) {
+    let visibleMessages = [];
+    const currentUserId = Number(this.state.currentUser);
+
+    for (let i = 0; i < messages.length; i++) {
+      let isSender = messages[i].sender_id;
+      let isRecipient = messages[i].recipient_id;
+      if (isSender === currentUserId || isRecipient === currentUserId) {
+        visibleMessages.push(messages[i]);
+      }
+    }
+
+    return visibleMessages;
+  }
+
   createMessage(newMessage) {
     const newMessages = this.state.messages.slice();
     newMessage.id = this.state.messages.length + 1;
@@ -87,15 +61,11 @@ class App extends Component {
   setUser(id) {
     const userObject = {};
     userObject.currentUser = id;
-    return this.setState(userObject);
+    this.setState(userObject);
   }
 
   render() {
-    console.log(messages);
-    let options = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'};
-    const newDate = new Date();
-    const convertedDate = newDate.toLocaleString('en-US', options);
-    console.log(convertedDate);
+    const messages = this.displayMessages(this.state.messages);
     return (
       <div className="App">
         <div>
@@ -105,7 +75,7 @@ class App extends Component {
               <Contacts users={this.state.users} />
             </div>
             <div className="col-xs-8">
-              <Conversation messages={this.state.messages} />
+              <Conversation messages={messages} />
               <MsgInput createMessage={this.createMessage} />
             </div>
           </div>
