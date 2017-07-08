@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.conversation-container {
+  border: 1px solid black;
+  height: 500px;
+}
+
+.contacts-container {
+  border: 1px solid black;
+  height: 500px;
+}
+
+
+/*.sidebar-container {
+  width: 30%;
+  float: left;
+}
+
+.primary-content {
+  margin-right: 30%;
+  float: right;
+}*/
