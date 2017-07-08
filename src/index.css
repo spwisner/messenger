@@ -6,15 +6,31 @@ body {
 
 .conversation-container {
   border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
   height: 500px;
 }
 
 .message-right {
+  list-style-type: none;
+  margin-left: 40%;
+  margin-right: 5px;
   text-align: right;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  padding: 2px;
 }
 
 .message-left {
+  list-style-type: none;
+  margin-right: 40%;
+  margin-left: 5px;
   text-align: left;
+  background-color: gray;
+  color: black;
+  border-radius:5px;
+  padding: 2px;
 }
 
 .contacts-container {

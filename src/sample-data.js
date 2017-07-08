@@ -4,7 +4,7 @@ const messages = [
     sender_id: 1,
     recipient_id: 2,
     time_sent: new Date(Date.UTC(2012, 11, 20, 3, 0, 0)),
-    body: "First Message"
+    body: "Hey Ryan!"
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const messages = [
     sender_id: 2,
     recipient_id: 1,
     time_sent: new Date(Date.UTC(2015, 11, 20, 5, 0, 0)),
-    body: "Third Message"
+    body: "What's up Scott"
   },
 ];
 
