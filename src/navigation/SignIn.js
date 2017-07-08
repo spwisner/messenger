@@ -24,6 +24,7 @@ export default class SignIn extends React.Component {
     const userId = form.selectedUser.value;
 
     this.props.setUser(userId);
+    this.props.setRecipient(0);
 
     this.setState({
       dropdownClass: "dropdown"
@@ -32,7 +33,7 @@ export default class SignIn extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-
+    this.props.setRecipient(0);
     if (this.state.dropdownClass === "dropdown") {
       this.setState({
         dropdownClass: "dropdown open"
@@ -64,7 +65,7 @@ export default class SignIn extends React.Component {
                     </select>
                   </div>
                   <input type="submit" className="btn btn-sm btn-success margin-right-btn" value="Submit"/>
-                  <button type="button" className="btn btn-sm btn-danger" onClick={this.handleCancel}>Cancel</button>
+                  <button type="button" className="btn btn-sm btn-danger" onClick={this.handleClick}>Cancel</button>
                 </form>
               </div>
             </div>

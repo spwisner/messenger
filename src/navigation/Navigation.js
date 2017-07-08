@@ -13,7 +13,7 @@ export default class Navigation extends React.Component {
               <span className="navbar-brand" href="#" onClick={this.snippetsOnClick}>Messenger</span>
             </div>
             <div>
-              {currentUser ? <SignOut setUser={this.props.setUser} setRecipient={this.props.setRecipient} /> : <SignIn userList={this.props.userList} setUser={this.props.setUser}/>}
+              {currentUser ? <SignOut setUser={this.props.setUser} setRecipient={this.props.setRecipient} /> : <SignIn userList={this.props.userList} setUser={this.props.setUser} setRecipient={this.props.setRecipient}/>}
             </div>
         </div>
       </nav>

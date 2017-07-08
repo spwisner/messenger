@@ -57,6 +57,20 @@ class App extends Component {
     return visibleMessages;
   }
 
+  filterUsers() {
+    let filteredUsers = [];
+    const users = this.state.users;
+    const currentUser = this.state.currentUser;
+
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id !== currentUser) {
+        filteredUsers.push(users[i]);
+      }
+    }
+    console.log(filteredUsers);
+    return filteredUsers;
+  }
+
   createMessage(newMessage) {
     const newMessages = this.state.messages.slice();
     newMessage.id = this.state.messages.length + 1;
@@ -78,13 +92,14 @@ class App extends Component {
 
   render() {
     const messages = this.displayMessages();
+    const users = this.filterUsers();
     return (
       <div className="App">
         <div>
           <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient} />
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={this.state.users} setRecipient={this.setRecipient}/>
+              <Contacts users={users} setRecipient={this.setRecipient}/>
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} />
