@@ -102,7 +102,7 @@ class App extends Component {
               <Contacts users={users} setRecipient={this.setRecipient}/>
             </div>
             <div className="col-xs-8">
-              <Conversation messages={messages} />
+              <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
               <MsgInput createMessage={this.createMessage} />
             </div>
           </div>

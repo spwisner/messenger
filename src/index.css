@@ -9,6 +9,14 @@ body {
   height: 500px;
 }
 
+.message-right {
+  text-align: right;
+}
+
+.message-left {
+  text-align: left;
+}
+
 .contacts-container {
   border: 1px solid black;
   height: 500px;
