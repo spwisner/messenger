@@ -20,10 +20,12 @@ class App extends Component {
       messages: [],
       users: users,
       currentUser: 0,
+      recipient: 0
     };
 
     this.createMessage = this.createMessage.bind(this);
     this.setUser = this.setUser.bind(this);
+    this.setRecipient = this.setRecipient.bind(this);
   }
 
   componentDidMount() {
@@ -60,8 +62,14 @@ class App extends Component {
 
   setUser(id) {
     const userObject = {};
-    userObject.currentUser = id;
+    userObject.currentUser = Number(id);
     this.setState(userObject);
+  }
+
+  setRecipient(id) {
+    const recipientObject = {};
+    recipientObject.recipient = Number(id);
+    this.setState(recipientObject);
   }
 
   render() {
@@ -72,7 +80,7 @@ class App extends Component {
           <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} />
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={this.state.users} />
+              <Contacts users={this.state.users} setRecipient={this.setRecipient}/>
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} />

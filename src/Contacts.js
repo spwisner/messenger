@@ -1,12 +1,9 @@
 import React from 'react';
-
-const User = (props) => (
-    <li>{props.user.name}</li>
-)
+import User from './User';
 
 function Contacts(props) {
   const users = props.users.map(user =>
-    <User key={user.id} user={user} />
+    <User key={user.id} user={user} setRecipient={props.setRecipient}/>
   );
 
   return (
