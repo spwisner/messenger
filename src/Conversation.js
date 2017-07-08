@@ -14,9 +14,7 @@ function Conversation(props) {
 
   return (
     <div className="conversation-container">
-      <ul>
         {messageItems}
-      </ul>
     </div>
   );
 }

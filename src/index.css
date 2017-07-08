@@ -14,6 +14,13 @@ body {
   height: 500px;
 }
 
+.login-form {
+  width: 300px;
+}
+
+.margin-right-btn {
+  margin-right: 3px;
+}
 
 /*.sidebar-container {
   width: 30%;

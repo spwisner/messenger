@@ -1,11 +1,21 @@
 import React from 'react';
 
-export default class Contacts extends React.Component {
-  render() {
-    return (
-      <div className="contacts-container">
-        Placeholder for Contacts
-      </div>
-    )
-  }
+const User = (props) => (
+    <li>{props.user.name}</li>
+)
+
+function Contacts(props) {
+  const users = props.users.map(user =>
+    <User key={user.id} user={user} />
+  );
+
+  return (
+    <div className="contacts-container">
+        <ul>
+          {users}
+        </ul>
+    </div>
+  );
 }
+
+module.exports = Contacts;
