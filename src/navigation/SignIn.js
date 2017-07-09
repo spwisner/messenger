@@ -21,7 +21,7 @@ export default class SignIn extends React.Component {
     const form = document.forms.signInForm;
     const userId = form.selectedUser.value;
 
-    this.props.setUser(userId);
+    this.props._setUser(userId);
     this.props._setRecipient(0);
 
     return this.setState({
