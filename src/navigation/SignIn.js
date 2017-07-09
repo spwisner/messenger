@@ -18,9 +18,7 @@ export default class SignIn extends React.Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-
     const form = document.forms.signInForm;
-
     const userId = form.selectedUser.value;
 
     this.props.setUser(userId);
@@ -35,11 +33,11 @@ export default class SignIn extends React.Component {
     event.preventDefault();
     this.props.setRecipient(0);
     if (this.state.dropdownClass === "dropdown") {
-      this.setState({
+      return this.setState({
         dropdownClass: "dropdown open"
       });
     } else {
-      this.setState({
+      return this.setState({
         dropdownClass: "dropdown"
       });
     }
@@ -49,6 +47,7 @@ export default class SignIn extends React.Component {
     const userOptions = this.props.userList.map(user =>
       <UserSelect key={user.id} user={user} />
     );
+
     return (
       <div>
         <ul className="nav navbar-nav navbar-right">
@@ -56,7 +55,7 @@ export default class SignIn extends React.Component {
             <a className="dropdown-toggle" data-toggle="dropdown" href="#" onClick={this.handleClick}>Login <span className="glyphicon glyphicon-log-in"></span></a>
             <div className="dropdown-menu">
               <div className="container-fluid">
-                <h2>Sign-In</h2>
+                <h3 className="underline">Login</h3>
                 <form className="form login-form" name="signInForm" onSubmit={this.handleLoginSubmit}>
                   <div className="form-group">
                     <label>Select User:</label>

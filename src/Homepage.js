@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default class Homepage extends React.Component {
-  render() {
-    return (
+const Homepage = function() {
+  return (
+    <div>
       <div>
-        <div>
-          <h1>Welcome!</h1>
-          <p>Login to get started</p>
-        </div>
+        <h1>Welcome!</h1>
+        <p>Login to get started</p>
       </div>
-    )
-  }
+    </div>
+  );
 }
+
+module.exports = Homepage;

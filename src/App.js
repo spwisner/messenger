@@ -28,7 +28,6 @@ class App extends Component {
     this.setUser = this.setUser.bind(this);
     this.setRecipient = this.setRecipient.bind(this);
     this.errorMessage = this.errorMessage.bind(this);
-    this.removeActiveClass = this.removeActiveClass.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +35,7 @@ class App extends Component {
   }
 
   loadData() {
-    this.setState({
+    return this.setState({
       messages: messages
     });
   }
@@ -60,16 +59,18 @@ class App extends Component {
     return visibleMessages;
   }
 
-  removeActiveClass() {
-    const verticalMenuDOM = document.getElementById("vertical-menu").children;
-
-    for (let i = 0; i < verticalMenuDOM.length; i++) {
-       verticalMenuDOM[i].classList.remove("active");
-     }
-  }
+  // removeActiveClass() {
+  //   const verticalMenuDOM = document.getElementById("vertical-menu").children;
+  //
+  //   for (let i = 0; i < verticalMenuDOM.length; i++) {
+  //      verticalMenuDOM[i].classList.remove("active");
+  //    }
+  //
+  //   return;
+  // }
 
   errorMessage(string) {
-    console.log(string);
+    return console.log(string);
   }
 
   filterUsers() {
@@ -82,7 +83,7 @@ class App extends Component {
         filteredUsers.push(users[i]);
       }
     }
-    console.log(filteredUsers);
+
     return filteredUsers;
   }
 
@@ -112,11 +113,11 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient} removeActiveClass={this.removeActiveClass}/>
+          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient}/>
           {signedIn ?
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={users} setRecipient={this.setRecipient} currentRecipient={this.state.recipient} removeActiveClass={this.removeActiveClass}/>
+              <Contacts users={users} setRecipient={this.setRecipient} currentRecipient={this.state.recipient}/>
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>

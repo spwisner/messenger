@@ -9,10 +9,8 @@ export default class MsgInput extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
     const senderId= this.props.currentUser;
     const recipientId = this.props.currentRecipient;
-
     const form = document.forms.messageForm;
 
     const data = {
@@ -22,16 +20,18 @@ export default class MsgInput extends React.Component {
       time_sent: new Date()
     };
 
+    // Clear form
     form.messageInput.value = "";
 
+    // Error Debugging messages
     if (senderId !==0 && recipientId!== 0) {
-      this.props.createMessage(data);
+      return this.props.createMessage(data);
     } else if (senderId === 0) {
-      this.props.errorMessage("Error: Please login before sending message");
+      return this.props.errorMessage("Error: Please login before sending message");
     } else if (recipientId === 0) {
-      this.props.errorMessage("Error: Please select a recipient before sending message");
+      return this.props.errorMessage("Error: Please select a recipient before sending message");
     } else {
-      this.props.errorMessage("Error: An unknown error has occured");
+      return this.props.errorMessage("Error: An unknown error has occured");
     }
   }
 

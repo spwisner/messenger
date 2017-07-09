@@ -38,9 +38,7 @@ function Conversation(props) {
   const messageItems = props.messages.map(message =>
     <Message key={message.id} message={message} currentUser={props.currentUser}/>
   );
-
   const noMessage = EmptyMessage(props.currentUser, props.currentRecipient)
-
   const messagesExist = (props.messages.length > 0);
 
   return (
