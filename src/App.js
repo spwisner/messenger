@@ -9,8 +9,9 @@ import Homepage from './Homepage';
 
 const data = require('./sample-data');
 
-const messages = data.messages;
+
 const users = data.users;
+import MsgrStore from './stores/MsgrStore';
 
 
 class App extends Component {
@@ -36,7 +37,7 @@ class App extends Component {
 
   loadData() {
     return this.setState({
-      messages: messages
+      messages: MsgrStore.getAll()
     });
   }
 
