@@ -1,4 +1,4 @@
-import {EventEmitter} from "events";
+import { EventEmitter } from "events";
 import dispatcher from '../dispatcher';
 const sampleData = require('../sample-data');
 const messages = sampleData.messages;

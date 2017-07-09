@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import './App.css';
+// import '../style/App.css';
 import MsgInput from './MsgInput';
 import Conversation from './Conversation';
-import Contacts from './Contacts';
+import Contacts from './contacts/Contacts';
 import Navigation from './navigation/Navigation';
 import Homepage from './Homepage';
 
-import * as MsgrActions from './actions/MsgrActions';
-import MsgrStore from './stores/MsgrStore';
+import * as MsgrActions from '../actions/MsgrActions';
+import MsgrStore from '../stores/MsgrStore';
 
-const data = require('./sample-data');
+const data = require('../sample-data');
 const users = data.users;
 
 class App extends Component {
