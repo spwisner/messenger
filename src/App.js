@@ -26,6 +26,7 @@ class App extends Component {
     this.createMessage = this.createMessage.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setRecipient = this.setRecipient.bind(this);
+    this.errorMessage = this.errorMessage.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,10 @@ class App extends Component {
     }
 
     return visibleMessages;
+  }
+
+  errorMessage(string) {
+    console.log(string);
   }
 
   filterUsers() {
@@ -103,7 +108,7 @@ class App extends Component {
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
-              <MsgInput createMessage={this.createMessage} />
+              <MsgInput errorMessage={this.errorMessage} createMessage={this.createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
             </div>
           </div>
         </div>

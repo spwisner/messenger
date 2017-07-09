@@ -1,7 +1,7 @@
 import React from 'react';
 
 function EmptyMessage(user, recipient) {
-  if (user === 0 && recipient === 0) {
+  if (user === 0) {
     return (
       <p>Login to get started</p>
     )
