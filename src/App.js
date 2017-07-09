@@ -7,12 +7,11 @@ import Contacts from './Contacts';
 import Navigation from './navigation/Navigation';
 import Homepage from './Homepage';
 
-const data = require('./sample-data');
-
-
-const users = data.users;
+import * as MsgrActions from './actions/MsgrActions';
 import MsgrStore from './stores/MsgrStore';
 
+const data = require('./sample-data');
+const users = data.users;
 
 class App extends Component {
   constructor() {
@@ -86,12 +85,16 @@ class App extends Component {
     return filteredUsers;
   }
 
-  _createMessage(newMessage) {
-    const newMessages = this.state.messages.slice();
-    newMessage.id = this.state.messages.length + 1;
-    newMessages.push(newMessage);
-    return this.setState({ messages: newMessages });
+  _createMessage(object) {
+    MsgrActions._createMessage(object);
   }
+
+  // _createMessage(newMessage) {
+  //   const newMessages = this.state.messages.slice();
+  //   newMessage.id = this.state.messages.length + 1;
+  //   newMessages.push(newMessage);
+  //   return this.setState({ messages: newMessages });
+  // }
 
   _setUser(id) {
     const userObject = {};
