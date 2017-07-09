@@ -1,4 +1,5 @@
 import {EventEmitter} from "events";
+import dispatcher from '../dispatcher';
 const sampleData = require('../sample-data');
 const messages = sampleData.messages;
 
@@ -17,9 +18,20 @@ class MsgrStore extends EventEmitter {
   _getAll() {
     return this.messages;
   }
+
+  handleActions(action) {
+    console.log('msgStore receive action', action);
+    switch(action.type) {
+      case "CREATE_MESSAGE": {
+        this._createMessage(action.object);
+      }
+    }
+  }
 }
 
 const msgrStore = new MsgrStore();
-window.msgrStore = msgrStore;
+
+dispatcher.register(msgrStore.handleActions.bind(msgrStore));
+window.dispatcher = dispatcher;
 
 export default msgrStore;
