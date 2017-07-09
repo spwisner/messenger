@@ -9,6 +9,7 @@ body {
   border-radius: 5px;
   padding: 5px;
   height: 500px;
+  overflow-y: scroll;
 }
 
 .message-right {
@@ -36,6 +37,8 @@ body {
 .contacts-container {
   border: 1px solid black;
   height: 500px;
+  margin: 3px;
+  padding: 3px;
 }
 
 .login-form {

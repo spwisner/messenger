@@ -8,6 +8,7 @@ function Contacts(props) {
 
   return (
     <div className="contacts-container">
+      <h4>Contacts</h4>
         <ul>
           {users}
         </ul>
