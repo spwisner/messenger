@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-// import '../style/App.css';
 import MsgInput from './MsgInput';
 import Conversation from './Conversation';
 import Contacts from './contacts/Contacts';

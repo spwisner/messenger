@@ -7,6 +7,15 @@ export default class MsgInput extends React.Component {
     this._handleMessageSubmit = this._handleMessageSubmit.bind(this);
   }
 
+  isRecipientSelected() {
+    const recipientId = this.props.currentRecipient;
+    if (recipientId > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   _handleMessageSubmit(event) {
     event.preventDefault();
     const senderId= this.props.currentUser;
@@ -36,13 +45,18 @@ export default class MsgInput extends React.Component {
   }
 
   render() {
+    const isRecipient = this.isRecipientSelected();
     return (
       <div className="msg-input-container">
         <form name="messageForm" onSubmit={this._handleMessageSubmit}>
           <div className="form-group">
             <input className="form-control msg-input" name="messageInput" placeholder="Type Message..." rows="3" />
           </div>
+          {isRecipient ?
             <input id="create-message" type="submit" className="btn btn-block btn-success btn-md" value="Send" />
+            :
+            <input id="create-message" type="submit" className="btn btn-block btn-danger btn-md" value="Send" disabled/>
+          }
         </form>
       </div>
     )
