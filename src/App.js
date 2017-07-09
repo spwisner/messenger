@@ -5,6 +5,7 @@ import MsgInput from './MsgInput';
 import Conversation from './Conversation';
 import Contacts from './Contacts';
 import Navigation from './navigation/Navigation';
+import Homepage from './Homepage';
 
 const data = require('./sample-data');
 
@@ -27,6 +28,7 @@ class App extends Component {
     this.setUser = this.setUser.bind(this);
     this.setRecipient = this.setRecipient.bind(this);
     this.errorMessage = this.errorMessage.bind(this);
+    this.removeActiveClass = this.removeActiveClass.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +58,14 @@ class App extends Component {
     }
 
     return visibleMessages;
+  }
+
+  removeActiveClass() {
+    const verticalMenuDOM = document.getElementById("vertical-menu").children;
+
+    for (let i = 0; i < verticalMenuDOM.length; i++) {
+       verticalMenuDOM[i].classList.remove("active");
+     }
   }
 
   errorMessage(string) {
@@ -98,19 +108,22 @@ class App extends Component {
   render() {
     const messages = this.displayMessages();
     const users = this.filterUsers();
+    const signedIn = (this.state.currentUser > 0);
     return (
       <div className="App">
         <div>
-          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient} />
+          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient} removeActiveClass={this.removeActiveClass}/>
+          {signedIn ?
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={users} setRecipient={this.setRecipient}/>
+              <Contacts users={users} setRecipient={this.setRecipient} currentRecipient={this.state.recipient} removeActiveClass={this.removeActiveClass}/>
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
               <MsgInput errorMessage={this.errorMessage} createMessage={this.createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
             </div>
           </div>
+          : <Homepage /> }
         </div>
       </div>
     );

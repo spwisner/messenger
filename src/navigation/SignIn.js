@@ -26,7 +26,7 @@ export default class SignIn extends React.Component {
     this.props.setUser(userId);
     this.props.setRecipient(0);
 
-    this.setState({
+    return this.setState({
       dropdownClass: "dropdown"
     });
   }

@@ -1,7 +1,11 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 5px;
   font-family: sans-serif;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .conversation-container {
@@ -36,25 +40,57 @@ body {
 
 .contacts-container {
   border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
   height: 500px;
   margin: 3px;
-  padding: 3px;
 }
 
 .login-form {
   width: 300px;
 }
 
+.empty-message-warning {
+  color: red;
+  text-align: center;
+}
+
+.start-message {
+  color: green;
+  text-align: center;
+}
+
 .margin-right-btn {
   margin-right: 3px;
 }
 
-/*.sidebar-container {
-  width: 30%;
-  float: left;
+.center-text {
+  text-align: center;
 }
 
-.primary-content {
-  margin-right: 30%;
-  float: right;
-}*/
+.msg-input-container {
+  margin-top: 5px;
+}
+
+/* //////Contact Sidebar */
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}

@@ -3,15 +3,15 @@ import React from 'react';
 function EmptyMessage(user, recipient) {
   if (user === 0) {
     return (
-      <p>Login to get started</p>
+      <p className="empty-message-warning">Login to get started</p>
     )
   } else if (user !== 0 && recipient === 0) {
     return (
-      <p>Please Select a Recipient!</p>
+      <p className="empty-message-warning">Please Select a Recipient!</p>
     )
   } else {
     return (
-      <p>No conversation exists.  Start one now!</p>
+      <p className="start-message">No conversation exists.  Start one now!</p>
     )
   }
 }

@@ -36,16 +36,13 @@ export default class MsgInput extends React.Component {
   }
 
   render() {
-
     return (
-      <div>
+      <div className="msg-input-container">
         <form name="messageForm" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <textarea className="form-control" name="messageInput" placeholder="Type Message..." rows="3"></textarea>
           </div>
-          <div className="form-group">
             <input id="create-message" type="submit" className="btn btn-block btn-success btn-md" value="Send" />
-          </div>
         </form>
       </div>
     )
