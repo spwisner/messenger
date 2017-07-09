@@ -24,10 +24,10 @@ class App extends Component {
       recipient: 0
     };
 
-    this.createMessage = this.createMessage.bind(this);
-    this.setUser = this.setUser.bind(this);
-    this.setRecipient = this.setRecipient.bind(this);
-    this.errorMessage = this.errorMessage.bind(this);
+    this._createMessage = this._createMessage.bind(this);
+    this._setUser = this._setUser.bind(this);
+    this._setRecipient = this._setRecipient.bind(this);
+    this._errorMessage = this._errorMessage.bind(this);
   }
 
   componentDidMount() {
@@ -40,7 +40,7 @@ class App extends Component {
     });
   }
 
-  displayMessages() {
+  _displayMessages() {
     let messages = this.state.messages;
     let visibleMessages = [];
     const currentUserId = this.state.currentUser;
@@ -59,21 +59,11 @@ class App extends Component {
     return visibleMessages;
   }
 
-  // removeActiveClass() {
-  //   const verticalMenuDOM = document.getElementById("vertical-menu").children;
-  //
-  //   for (let i = 0; i < verticalMenuDOM.length; i++) {
-  //      verticalMenuDOM[i].classList.remove("active");
-  //    }
-  //
-  //   return;
-  // }
-
-  errorMessage(string) {
+  _errorMessage(string) {
     return console.log(string);
   }
 
-  filterUsers() {
+  _filterUsers() {
     let filteredUsers = [];
     const users = this.state.users;
     const currentUser = this.state.currentUser;
@@ -87,41 +77,41 @@ class App extends Component {
     return filteredUsers;
   }
 
-  createMessage(newMessage) {
+  _createMessage(newMessage) {
     const newMessages = this.state.messages.slice();
     newMessage.id = this.state.messages.length + 1;
     newMessages.push(newMessage);
     return this.setState({ messages: newMessages });
   }
 
-  setUser(id) {
+  _setUser(id) {
     const userObject = {};
     userObject.currentUser = Number(id);
     return this.setState(userObject);
   }
 
-  setRecipient(id) {
+  _setRecipient(id) {
     const recipientObject = {};
     recipientObject.recipient = Number(id);
     return this.setState(recipientObject);
   }
 
   render() {
-    const messages = this.displayMessages();
-    const users = this.filterUsers();
+    const messages = this._displayMessages();
+    const users = this._filterUsers();
     const signedIn = (this.state.currentUser > 0);
     return (
       <div className="App">
         <div>
-          <Navigation currentUser={this.state.currentUser} userList={this.state.users} setUser={this.setUser} setRecipient={this.setRecipient}/>
+          <Navigation currentUser={this.state.currentUser} userList={this.state.users} _setUser={this._setUser} _setRecipient={this._setRecipient}/>
           {signedIn ?
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={users} setRecipient={this.setRecipient} currentRecipient={this.state.recipient}/>
+              <Contacts users={users} _setRecipient={this._setRecipient} currentRecipient={this.state.recipient}/>
             </div>
             <div className="col-xs-8">
               <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
-              <MsgInput errorMessage={this.errorMessage} createMessage={this.createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
+              <MsgInput _errorMessage={this._errorMessage} _createMessage={this._createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
             </div>
           </div>
           : <Homepage /> }

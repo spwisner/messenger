@@ -3,7 +3,7 @@ import User from './User';
 
 function Contacts(props) {
   const users = props.users.map(user =>
-    <User key={user.id} user={user} currentRecipient={props.currentRecipient} setRecipient={props.setRecipient}/>
+    <User key={user.id} user={user} currentRecipient={props.currentRecipient} _setRecipient={props._setRecipient}/>
   );
 
   return (

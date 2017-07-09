@@ -13,7 +13,7 @@ function Navigation(props) {
             <span className="navbar-brand">Messenger</span>
           </div>
           <div>
-            {currentUser ? <SignOut setUser={props.setUser} setRecipient={props.setRecipient} /> : <SignIn userList={props.userList} setUser={props.setUser} setRecipient={props.setRecipient} />}
+            {currentUser ? <SignOut setUser={props.setUser} _setRecipient={props._setRecipient} /> : <SignIn userList={props.userList} setUser={props.setUser} _setRecipient={props._setRecipient} />}
           </div>
         </div>
       </nav>

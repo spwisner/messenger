@@ -22,7 +22,7 @@ export default class SignIn extends React.Component {
     const userId = form.selectedUser.value;
 
     this.props.setUser(userId);
-    this.props.setRecipient(0);
+    this.props._setRecipient(0);
 
     return this.setState({
       dropdownClass: "dropdown"
@@ -31,7 +31,7 @@ export default class SignIn extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.props.setRecipient(0);
+    this.props._setRecipient(0);
     if (this.state.dropdownClass === "dropdown") {
       return this.setState({
         dropdownClass: "dropdown open"

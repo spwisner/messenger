@@ -8,10 +8,10 @@ export default class extends React.Component {
       activeClass: ""
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    this._handleUserClick = this._handleUserClick.bind(this);
   }
 
-  removeActiveClass() {
+  _removeActiveClass() {
     const verticalMenuDOM = document.getElementById("vertical-menu").children;
 
     for (let i = 0; i < verticalMenuDOM.length; i++) {
@@ -19,10 +19,10 @@ export default class extends React.Component {
      }
   }
 
-  handleClick(event) {
+  _handleUserClick(event) {
     event.preventDefault();
-    this.props.setRecipient(this.props.user.id);
-    this.removeActiveClass();
+    this.props._setRecipient(this.props.user.id);
+    this._removeActiveClass();
     this.setState({
       activeClass: "active"
     });
@@ -30,7 +30,7 @@ export default class extends React.Component {
 
   render() {
     return (
-      <a href="#" className={this.state.activeClass} onClick={this.handleClick}>{this.props.user.name}</a>
+      <a href="#" className={this.state.activeClass} onClick={this._handleUserClick}>{this.props.user.name}</a>
     );
   }
 }
