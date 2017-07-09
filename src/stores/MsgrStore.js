@@ -8,11 +8,18 @@ class MsgrStore extends EventEmitter {
     this.messages = messages;
   }
 
-  getAll() {
+  _createMessage(data) {
+    data.id = this.messages.length + 1;
+    this.messages.push(data);
+    this.emit("change");
+  }
+
+  _getAll() {
     return this.messages;
   }
 }
 
 const msgrStore = new MsgrStore();
+window.msgrStore = msgrStore;
 
 export default msgrStore;

@@ -31,13 +31,21 @@ class App extends Component {
     this._errorMessage = this._errorMessage.bind(this);
   }
 
+  componentWillMount() {
+    MsgrStore.on("change", () => {
+      this.setState({
+        messages: MsgrStore._getAll()
+      })
+    })
+  }
+
   componentDidMount() {
     this.loadData();
   }
 
   loadData() {
     return this.setState({
-      messages: MsgrStore.getAll()
+      messages: MsgrStore._getAll()
     });
   }
 
