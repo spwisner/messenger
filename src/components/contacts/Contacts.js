@@ -11,7 +11,7 @@ function Contacts(props) {
   return (
     <div className="contacts-container">
       <h4 className="center-text underline">Contacts</h4>
-        <div id="vertical-menu" className="vertical-menu">
+        <div id="contacts-menu" className="contacts-menu">
           {users}
         </div>
     </div>
