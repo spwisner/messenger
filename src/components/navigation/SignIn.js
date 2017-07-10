@@ -1,4 +1,5 @@
 import React from 'react';
+import MsgrStore from '../../stores/MsgrStore';
 
 const UserSelect = (props) => (
   <option value={props.user.id}>{props.user.name}</option>
@@ -21,8 +22,9 @@ export default class SignIn extends React.Component {
     const form = document.forms.signInForm;
     const userId = form.selectedUser.value;
 
-    this.props._setUser(userId);
-    this.props._setRecipient(0);
+
+    MsgrStore._setUser(userId);
+    MsgrStore._setRecipient(0);
 
     return this.setState({
       dropdownClass: "dropdown"
@@ -31,7 +33,7 @@ export default class SignIn extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.props._setRecipient(0);
+    MsgrStore._setRecipient(0);
     if (this.state.dropdownClass === "dropdown") {
       return this.setState({
         dropdownClass: "dropdown open"
@@ -44,7 +46,8 @@ export default class SignIn extends React.Component {
   }
 
   render() {
-    const userOptions = this.props.userList.map(user =>
+    const userList = MsgrStore._getAllUsers();
+    const userOptions = userList.map(user =>
       <UserSelect key={user.id} user={user} />
     );
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import MsgrStore from '../../stores/MsgrStore';
 
 export default class SignOut extends React.Component {
   constructor(props) {
@@ -9,8 +10,8 @@ export default class SignOut extends React.Component {
 
   signOutRequest(event) {
     event.preventDefault();
-    this.props._setUser(0);
-    this.props._setRecipient(0);
+    MsgrStore._setUser(0);
+    MsgrStore._setRecipient(0);
     return;
   }
 

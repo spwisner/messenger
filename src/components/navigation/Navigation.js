@@ -1,9 +1,10 @@
 import React from 'react';
 import SignOut from './SignOut';
 import SignIn from './SignIn';
+import MsgrStore from '../../stores/MsgrStore';
 
 function Navigation(props) {
-  const currentUser = (props.currentUser > 0);
+  const isCurrentUser = (MsgrStore._getCurrentUser() > 0);
 
   return (
     <div>
@@ -13,7 +14,7 @@ function Navigation(props) {
             <span className="navbar-brand">Messenger</span>
           </div>
           <div>
-            {currentUser ? <SignOut _setUser={props._setUser} _setRecipient={props._setRecipient} /> : <SignIn userList={props.userList} _setUser={props._setUser} _setRecipient={props._setRecipient} />}
+            {isCurrentUser ? <SignOut /> : <SignIn />}
           </div>
         </div>
       </nav>
