@@ -7,9 +7,16 @@ export function _createMessage(object) {
   });
 }
 
-// export function deleteMessage(id) {
-//   dispatcher.dispatch({
-//     type: "DELETED_MESSAGE",
-//     id,
-//   });
-// }
+export function _setUser(id) {
+  dispatcher.dispatch({
+    type: "SET_USER",
+    id,
+  });
+}
+
+export function _setRecipient(id) {
+  dispatcher.dispatch({
+    type: "SET_RECIPIENT",
+    id,
+  });
+}

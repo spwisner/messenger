@@ -5,65 +5,42 @@ import Conversation from './Conversation';
 import Contacts from './contacts/Contacts';
 import Navigation from './navigation/Navigation';
 import Homepage from './Homepage';
-
 import * as MsgrActions from '../actions/MsgrActions';
 import MsgrStore from '../stores/MsgrStore';
-
-const data = require('../sample-data');
-const users = data.users;
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      messages: [],
-      users: users,
-      currentUser: 0,
-      recipient: 0
+      messages: MsgrStore._getAllMsgs(),
+      users: MsgrStore._getAllUsers(),
+      displayMessages: MsgrStore._getDisplayedMsgs(),
+      currentUser: MsgrStore._getCurrentUser(),
+      recipient: MsgrStore._getRecipient(),
     };
 
-    this._createMessage = this._createMessage.bind(this);
-    this._setUser = this._setUser.bind(this);
-    this._setRecipient = this._setRecipient.bind(this);
+    // this._setUser = this._setUser.bind(this);
+    // this._setRecipient = this._setRecipient.bind(this);
     this._errorMessage = this._errorMessage.bind(this);
   }
 
   componentWillMount() {
     MsgrStore.on("change", () => {
       this.setState({
-        messages: MsgrStore._getAll()
-      })
-    })
-  }
-
-  componentDidMount() {
-    this.loadData();
-  }
-
-  loadData() {
-    return this.setState({
-      messages: MsgrStore._getAll()
+        messages: MsgrStore._getAllMsgs(),
+        users: MsgrStore._getAllUsers(),
+        displayMessages: MsgrStore._getDisplayedMsgs(),
+        currentUser: MsgrStore._getCurrentUser(),
+        recipient: MsgrStore._getRecipient(),
+      });
     });
   }
 
-  _displayMessages() {
-    let messages = this.state.messages;
-    let visibleMessages = [];
-    const currentUserId = this.state.currentUser;
-    const currentRecipient = this.state.recipient;
-
-    for (let i = 0; i < messages.length; i++) {
-      let isSender = messages[i].sender_id;
-      let isRecipient = messages[i].recipient_id;
-      const currentUserSelected = (isSender === currentUserId || isRecipient === currentUserId);
-      const currentRecipientSelected = (isSender === currentRecipient || isRecipient === currentRecipient);
-      if (currentUserSelected && currentRecipientSelected) {
-        visibleMessages.push(messages[i]);
-      }
-    }
-
-    return visibleMessages;
+  componentDidMount() {
+    this.setState({
+      messages: MsgrStore._getAllMsgs()
+    });
   }
 
   _errorMessage(string) {
@@ -84,8 +61,22 @@ class App extends Component {
     return filteredUsers;
   }
 
+  // Function filters out irrelevant messages (i.e. messages that do not involve
+  // the current user)
+  // _displayMessages() {
+  //   MsgrActions._displayMessages();
+  // }
+
   _createMessage(object) {
     MsgrActions._createMessage(object);
+  }
+
+  _setUser(id) {
+    MsgrActions._setUser(id);
+  }
+
+  _setRecipient(id) {
+    MsgrActions._setRecipient(id);
   }
 
   // _createMessage(newMessage) {
@@ -95,20 +86,19 @@ class App extends Component {
   //   return this.setState({ messages: newMessages });
   // }
 
-  _setUser(id) {
-    const userObject = {};
-    userObject.currentUser = Number(id);
-    return this.setState(userObject);
-  }
+  // _setUser(id) {
+  //   const userObject = {};
+  //   userObject.currentUser = Number(id);
+  //   return this.setState(userObject);
+  // }
 
-  _setRecipient(id) {
-    const recipientObject = {};
-    recipientObject.recipient = Number(id);
-    return this.setState(recipientObject);
-  }
+  // _setRecipient(id) {
+  //   const recipientObject = {};
+  //   recipientObject.recipient = Number(id);
+  //   return this.setState(recipientObject);
+  // }
 
   render() {
-    const messages = this._displayMessages();
     const users = this._filterUsers();
     const signedIn = (this.state.currentUser > 0);
     return (
@@ -121,7 +111,7 @@ class App extends Component {
               <Contacts users={users} _setRecipient={this._setRecipient} currentRecipient={this.state.recipient}/>
             </div>
             <div className="col-xs-8">
-              <Conversation messages={messages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
+              <Conversation messages={this.state.displayMessages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
               <MsgInput _errorMessage={this._errorMessage} _createMessage={this._createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
             </div>
           </div>

@@ -16,7 +16,6 @@ export default class extends React.Component {
 
   render() {
     const userIsRecipient = (this.props.currentRecipient === this.props.user.id);
-    console.log(userIsRecipient);
     return (
       <div>
       {userIsRecipient ?
