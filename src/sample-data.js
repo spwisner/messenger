@@ -1,10 +1,10 @@
 const messages = [
   {
     id: 1,
-    sender_id: 1,
-    recipient_id: 2,
+    sender_id: 2,
+    recipient_id: 1,
     time_sent: new Date(Date.UTC(2017, 6, 6, 3, 0, 0)),
-    body: "Hey Ryan!"
+    body: "Hey Scott!  I have a question..."
   },
   {
     id: 2,
@@ -15,10 +15,17 @@ const messages = [
   },
   {
     id: 3,
+    sender_id: 1,
+    recipient_id: 2,
+    time_sent: new Date(Date.UTC(2017, 6, 7, 11, 0, 0)),
+    body: "What's the question?"
+  },
+  {
+    id: 4,
     sender_id: 2,
     recipient_id: 1,
-    time_sent: new Date(Date.UTC(2017, 6, 7, 11, 0, 0)),
-    body: "What's up Scott"
+    time_sent: new Date(Date.UTC(2017, 6, 6, 11, 3, 0)),
+    body: "Who is the dad of the month?"
   },
 ];
 
