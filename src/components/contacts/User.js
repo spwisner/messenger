@@ -1,4 +1,5 @@
 import React from 'react';
+import MsgrStore from '../../stores/MsgrStore';
 
 export default class extends React.Component {
   constructor(props) {
@@ -11,11 +12,12 @@ export default class extends React.Component {
 
   _handleUserClick(event) {
     event.preventDefault();
-    this.props._setRecipient(this.props.user.id);
+    MsgrStore._setRecipient(this.props.user.id);
   }
 
   render() {
-    const userIsRecipient = (this.props.currentRecipient === this.props.user.id);
+    const currentRecipient = MsgrStore._getRecipient();
+    const userIsRecipient = (currentRecipient === this.props.user.id);
     return (
       <div>
       {userIsRecipient ?

@@ -68,6 +68,21 @@ class MsgrStore extends EventEmitter {
     return visibleMessages;
   }
 
+  // _getFilteredUsers removes the current user from the list of users to contact
+  _getFilteredUsers() {
+    let filteredUsers = [];
+    const users = this.users;
+    const currentUser = this.currentUser;
+
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id !== currentUser) {
+        filteredUsers.push(users[i]);
+      }
+    }
+
+    return filteredUsers;
+  }
+
   handleActions(action) {
     console.log('msgStore receive action', action);
     switch(action.type) {

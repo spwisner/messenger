@@ -46,19 +46,19 @@ class Main extends Component {
     return console.log(string);
   }
 
-  _filterUsers() {
-    let filteredUsers = [];
-    const users = this.state.users;
-    const currentUser = this.state.currentUser;
-
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].id !== currentUser) {
-        filteredUsers.push(users[i]);
-      }
-    }
-
-    return filteredUsers;
-  }
+  // _getFilteredUsers() {
+  //   let filteredUsers = [];
+  //   const users = this.state.users;
+  //   const currentUser = this.state.currentUser;
+  //
+  //   for (let i = 0; i < users.length; i++) {
+  //     if (users[i].id !== currentUser) {
+  //       filteredUsers.push(users[i]);
+  //     }
+  //   }
+  //
+  //   return filteredUsers;
+  // }
 
   // Function filters out irrelevant messages (i.e. messages that do not involve
   // the current user)
@@ -98,14 +98,13 @@ class Main extends Component {
   // }
 
   render() {
-    const users = this._filterUsers();
-    const signedIn = (this.state.currentUser > 0);
+    const signedIn = (MsgrStore._getCurrentUser() > 0);
     return (
         <div>
           {signedIn ?
           <div className="row">
             <div className="col-xs-4">
-              <Contacts users={users} _setRecipient={this._setRecipient} currentRecipient={this.state.recipient}/>
+              <Contacts />
             </div>
             <div className="col-xs-8">
               <Conversation messages={this.state.displayMessages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>

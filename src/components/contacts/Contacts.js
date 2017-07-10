@@ -1,9 +1,11 @@
 import React from 'react';
 import User from './User';
+import MsgrStore from '../../stores/MsgrStore';
 
 function Contacts(props) {
-  const users = props.users.map(user =>
-    <User key={user.id} user={user} currentRecipient={props.currentRecipient} _setRecipient={props._setRecipient}/>
+  const allUsers = MsgrStore._getFilteredUsers();
+  const users = allUsers.map(user =>
+    <User key={user.id} user={user}/>
   );
 
   return (
