@@ -18,10 +18,6 @@ class Main extends Component {
       currentUser: MsgrStore._getCurrentUser(),
       recipient: MsgrStore._getRecipient(),
     };
-
-    // this._setUser = this._setUser.bind(this);
-    // this._setRecipient = this._setRecipient.bind(this);
-    this._errorMessage = this._errorMessage.bind(this);
   }
 
   componentWillMount() {
@@ -43,28 +39,8 @@ class Main extends Component {
   }
 
   _errorMessage(string) {
-    return console.log(string);
+    MsgrActions._errorMessage(string);
   }
-
-  // _getFilteredUsers() {
-  //   let filteredUsers = [];
-  //   const users = this.state.users;
-  //   const currentUser = this.state.currentUser;
-  //
-  //   for (let i = 0; i < users.length; i++) {
-  //     if (users[i].id !== currentUser) {
-  //       filteredUsers.push(users[i]);
-  //     }
-  //   }
-  //
-  //   return filteredUsers;
-  // }
-
-  // Function filters out irrelevant messages (i.e. messages that do not involve
-  // the current user)
-  // _displayMessages() {
-  //   MsgrActions._displayMessages();
-  // }
 
   _createMessage(object) {
     MsgrActions._createMessage(object);
@@ -78,24 +54,6 @@ class Main extends Component {
     MsgrActions._setRecipient(id);
   }
 
-  // _createMessage(newMessage) {
-  //   const newMessages = this.state.messages.slice();
-  //   newMessage.id = this.state.messages.length + 1;
-  //   newMessages.push(newMessage);
-  //   return this.setState({ messages: newMessages });
-  // }
-
-  // _setUser(id) {
-  //   const userObject = {};
-  //   userObject.currentUser = Number(id);
-  //   return this.setState(userObject);
-  // }
-
-  // _setRecipient(id) {
-  //   const recipientObject = {};
-  //   recipientObject.recipient = Number(id);
-  //   return this.setState(recipientObject);
-  // }
 
   render() {
     const signedIn = (MsgrStore._getCurrentUser() > 0);
@@ -107,8 +65,8 @@ class Main extends Component {
               <Contacts />
             </div>
             <div className="col-xs-8">
-              <Conversation messages={this.state.displayMessages} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
-              <MsgInput _errorMessage={this._errorMessage} _createMessage={this._createMessage} currentUser={this.state.currentUser} currentRecipient={this.state.recipient}/>
+              <Conversation />
+              <MsgInput />
             </div>
           </div>
           : <Homepage /> }

@@ -1,4 +1,5 @@
 import React from 'react';
+import MsgrStore from '../stores/MsgrStore';
 
 function _emptyMessage(user, recipient) {
   if (user === 0) {
@@ -25,7 +26,8 @@ function _alignText(currentUser, senderId) {
 }
 
 function Message(props) {
-  const messageClass = _alignText(props.currentUser, props.message.sender_id)
+  const currentUser = MsgrStore._getCurrentUser();
+  const messageClass = _alignText(currentUser, props.message.sender_id)
   return (
     <ul className={messageClass}>
       <li>{props.message.body}</li>
@@ -35,11 +37,14 @@ function Message(props) {
 }
 
 function Conversation(props) {
-  const messageItems = props.messages.map(message =>
-    <Message key={message.id} message={message} currentUser={props.currentUser}/>
+  const currentUser = MsgrStore._getCurrentUser();
+  const currentRecipient = MsgrStore._getRecipient();
+  const displayedMsgs = MsgrStore._getDisplayedMsgs();
+  const messageItems = displayedMsgs.map(message =>
+    <Message key={message.id} message={message} />
   );
-  const noMessage = _emptyMessage(props.currentUser, props.currentRecipient)
-  const messagesExist = (props.messages.length > 0);
+  const noMessage = _emptyMessage(currentUser, currentRecipient)
+  const messagesExist = (displayedMsgs.length > 0);
 
   return (
     <div className="conversation-container">

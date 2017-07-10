@@ -20,6 +20,10 @@ class MsgrStore extends EventEmitter {
     this.emit("change");
   }
 
+  _createErrorMessage(string) {
+    return console.log(string);
+  }
+
   _getAllMsgs() {
     return this.messages;
   }
@@ -36,19 +40,18 @@ class MsgrStore extends EventEmitter {
     return this.recipient;
   }
 
-  _setUser(id) {
-    this.currentUser = Number(id);
+  _setUser(number) {
+    this.currentUser = Number(number);
     this.emit("change");
   }
 
-  _setRecipient(id) {
-    this.recipient = Number(id);
+  _setRecipient(number) {
+    this.recipient = Number(number);
     this.emit("change");
   }
 
   // Function filters out irrelevant messages (i.e. messages that do not involve
   // the current user)
-
   _getDisplayedMsgs() {
     const messages = this.messages;
     let visibleMessages = [];
@@ -91,11 +94,15 @@ class MsgrStore extends EventEmitter {
         break;
       }
       case "SET_USER": {
-        this._setUser(action.id);
+        this._setUser(action.number);
         break;
       }
       case "SET_RECIPIENT": {
-        this._setRecipient(action.id);
+        this._setRecipient(action.number);
+        break;
+      }
+      case "THROW_ERROR": {
+        this._createErrorMessage(action.string);
         break;
       }
 

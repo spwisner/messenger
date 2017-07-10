@@ -1,4 +1,5 @@
 import React from 'react';
+import MsgrStore from '../stores/MsgrStore';
 
 export default class MsgInput extends React.Component {
   constructor(props) {
@@ -7,8 +8,8 @@ export default class MsgInput extends React.Component {
     this._handleMessageSubmit = this._handleMessageSubmit.bind(this);
   }
 
-  isRecipientSelected() {
-    const recipientId = this.props.currentRecipient;
+  _isRecipientSelected() {
+    const recipientId = MsgrStore._getRecipient();
     if (recipientId > 0) {
       return true;
     } else {
@@ -18,8 +19,8 @@ export default class MsgInput extends React.Component {
 
   _handleMessageSubmit(event) {
     event.preventDefault();
-    const senderId= this.props.currentUser;
-    const recipientId = this.props.currentRecipient;
+    const senderId= MsgrStore._getCurrentUser();
+    const recipientId = MsgrStore._getRecipient();
     const form = document.forms.messageForm;
 
     const data = {
@@ -32,20 +33,20 @@ export default class MsgInput extends React.Component {
     // Clear form
     form.messageInput.value = "";
 
-    // Error Debugging messages
+    // Debugging messages
     if (senderId !==0 && recipientId!== 0) {
-      return this.props._createMessage(data);
+      return MsgrStore._createMessage(data);
     } else if (senderId === 0) {
-      return this.props._errorMessage("Error: Please login before sending message");
+      return MsgrStore._errorMessage("Error: Please login before sending message");
     } else if (recipientId === 0) {
-      return this.props._errorMessage("Error: Please select a recipient before sending message");
+      return MsgrStore._errorMessage("Error: Please select a recipient before sending message");
     } else {
-      return this.props._errorMessage("Error: An unknown error has occured");
+      return MsgrStore._errorMessage("Error: An unknown error has occured");
     }
   }
 
   render() {
-    const isRecipient = this.isRecipientSelected();
+    const isRecipient = this._isRecipientSelected();
     return (
       <div className="msg-input-container">
         <form name="messageForm" onSubmit={this._handleMessageSubmit}>

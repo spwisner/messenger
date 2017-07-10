@@ -7,16 +7,23 @@ export function _createMessage(object) {
   });
 }
 
-export function _setUser(id) {
+export function _setUser(number) {
   dispatcher.dispatch({
     type: "SET_USER",
-    id,
+    number,
   });
 }
 
-export function _setRecipient(id) {
+export function _setRecipient(number) {
   dispatcher.dispatch({
     type: "SET_RECIPIENT",
-    id,
+    number,
+  });
+}
+
+export function _createErrorMessage(string) {
+  dispatcher.dispatch({
+    type: "THROW_ERROR",
+    string,
   });
 }
